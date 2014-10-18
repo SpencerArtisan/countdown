@@ -1,0 +1,26 @@
+name:           countdown
+version:        0.1
+cabal-version:  >= 1.8
+build-type:     Custom
+author:         sward
+
+executable countdown
+    hs-source-dirs:   src
+    main-is:          Main.hs
+    build-depends:    base >= 4
+
+library
+    hs-source-dirs:   src
+    build-depends:    base >= 4
+    exposed-modules:  Echo,Operator
+
+test-suite spec
+    type:             exitcode-stdio-1.0
+    hs-source-dirs:   test,src
+    main-is:          Spec.hs
+    build-depends:    base == 4.*,
+                      QuickCheck >= 2.6,
+                      hspec >= 1.3,
+                      countdown
+
+
