@@ -31,7 +31,7 @@ spec = do
           multiOperate [(+), (-)] [1,2] `shouldBe`[3, -1] 
          
       it "should evaluate sum and difference of 1, 2 and 3" $ do
-          multiOperate [(+), (-)] [1,2,3] `shouldBe`[6, 0, -4, 2] 
+          multiOperate [(+), (-)] [1,2,3] `shouldBe`[6, 0, 2, -4] 
          
       it "should return the difference of three values for subtract" $ do
           operate (-) [1,2,3] `shouldBe` -4
