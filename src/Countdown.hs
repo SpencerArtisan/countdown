@@ -3,8 +3,7 @@ module Countdown (countdown) where
 import Combinator
 import Operator
 
-countdown :: [Int] -> [Int]
+countdown :: [Int] -> [(Int,String)]
 countdown [] = []
-countdown [x] = [x]
-countdown xs = concat [multiOperate [(+),(-)] cm | ss <- subsets xs, cm <- combinations ss]
+countdown xs = concat [operateWithMemo [plus,minus] (map (\c -> (c,show c)) cm) | ss <- subsets xs, cm <- combinations ss]
 
