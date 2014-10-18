@@ -16,5 +16,5 @@ spec = do
           combinations [1,2] `shouldBe` [[1,2], [2,1]]
 
       it "should have six combinations of a three element list" $ do
-          combinations [1,2,3] `shouldBe` [[1,2,3],[2,1,3],[1,3,2],[2,3,1],[3,1,2],[3,2,1]]
+          combinations [1,2,3] `shouldBe` [[1,2,3],[1,3,2],[2,1,3],[2,3,1],[3,1,2],[3,2,1]]
 
