@@ -7,7 +7,7 @@ operate f xs = foldl1 f xs
 multiOperate:: [(Int -> Int -> Int)] -> [Int] -> [Int]
 multiOperate ops [x] = [x]
 multiOperate ops (x:y:zs) = 
-  concat [multiOperate ops ((operate op [x,y]):zs) | op <- ops]
+  concat [multiOperate ops (operate op [x,y]:zs) | op <- ops]
 
 operateWithMemo :: [(Int,String) -> (Int,String) -> (Int, String)] -> [(Int,String)] -> [(Int,String)]
 operateWithMemo ops [] = []
