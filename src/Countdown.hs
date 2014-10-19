@@ -5,8 +5,9 @@ import Operator
 
 countdown :: [Int] -> [(Int,String)]
 countdown [] = []
-countdown xs = concat [operateWithMemo [plus,minus,times] (map toTuple cm) | ss <- subsets xs, cm <- combinations ss]
+countdown xs = concat [operateWithMemo ops (map toTuple cm) | ss <- subsets xs, cm <- combinations ss]
     where toTuple c = (c, show c)
+          ops = [plus, minus, times]
 
 countdownTarget :: [Int] -> Int -> String
 countdownTarget xs t 
