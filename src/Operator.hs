@@ -23,8 +23,8 @@ minus = applyOp (-) "-"
 
 times :: (Int,String) -> (Int,String) -> (Int, String)
 times (x,s)
-    | elem '-' s || elem '+' s = applyOp (*) "*" (x,"(" ++ s ++ ")")
-    | otherwise                = applyOp (*) "*" (x,s)
+    | elemAny "+-" s = applyOp (*) "*" (x,"(" ++ s ++ ")")
+    | otherwise      = applyOp (*) "*" (x,s)
 
 applyOp :: (Int -> Int -> Int) -> String -> (Int,String) -> (Int,String) -> (Int, String)
 applyOp f sym (x,s1) (y,s2) = (f x y, opMemo sym s1 s2)
@@ -32,3 +32,5 @@ applyOp f sym (x,s1) (y,s2) = (f x y, opMemo sym s1 s2)
 opMemo :: String -> String -> String -> String
 opMemo op s1 s2 = s1 ++ op ++ s2
 
+elemAny :: (Eq a) => [a] -> [a] -> Bool
+elemAny xs ys = foldr1 (||) [elem x ys | x <- xs]
