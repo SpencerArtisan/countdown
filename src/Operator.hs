@@ -16,13 +16,19 @@ operateWithMemo ops (x:y:zs) =
   concat [operateWithMemo ops ((op x y):zs) | op <- ops]
 
 plus :: (Int,String) -> (Int,String) -> (Int, String)
-plus (x,s1) (y,s2) = (x+y,s1 ++ "+" ++ s2)
+plus (x,s1) (y,s2) = (x+y, opMemo "+" s1 s2)
 
 minus :: (Int,String) -> (Int,String) -> (Int, String)
-minus (x,s1) (y,s2) = (x-y,s1 ++ "-" ++ s2)
+minus (x,s1) (y,s2) = (x-y, opMemo "-" s1 s2)
 
 times :: (Int,String) -> (Int,String) -> (Int, String)
 times (x,s1) (y,s2) 
-    | elem '-' s1 || elem '+' s1 = (x*y,"(" ++ s1 ++ ")*" ++ s2)
-    | otherwise = (x*y,s1 ++ "*" ++ s2)
+    | elem '-' s1 || elem '+' s1 = (x*y, opMemoWithBrackets "*" s1 s2)
+    | otherwise = (x*y, opMemo "*" s1 s2)
+
+opMemo :: String -> String -> String -> String
+opMemo op s1 s2 = s1 ++ op ++ s2
+
+opMemoWithBrackets :: String -> String -> String -> String
+opMemoWithBrackets op s1 s2 = "(" ++ s1 ++ ")" ++ op ++ s2
 
