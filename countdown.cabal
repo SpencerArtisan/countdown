@@ -12,7 +12,7 @@ executable countdown
 library
     hs-source-dirs:   src
     build-depends:    base >= 4
-    exposed-modules:  Echo,Operator
+    exposed-modules:  Operator,Combinator,Countdown
 
 test-suite spec
     type:             exitcode-stdio-1.0
