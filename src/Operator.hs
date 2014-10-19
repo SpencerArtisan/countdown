@@ -1,4 +1,4 @@
-module Operator (operate, multiOperate, operateWithMemo, plus, minus) where
+module Operator (operate, multiOperate, operateWithMemo, plus, minus, times) where
 
 operate :: (Int -> Int -> Int) -> [Int] -> Int
 operate f [] = 0
@@ -20,4 +20,9 @@ plus (x,s1) (y,s2) = (x+y,s1 ++ "+" ++ s2)
 
 minus :: (Int,String) -> (Int,String) -> (Int, String)
 minus (x,s1) (y,s2) = (x-y,s1 ++ "-" ++ s2)
+
+times :: (Int,String) -> (Int,String) -> (Int, String)
+times (x,s1) (y,s2) 
+    | elem '-' s1 || elem '+' s1 = (x*y,"(" ++ s1 ++ ")*" ++ s2)
+    | otherwise = (x*y,s1 ++ "*" ++ s2)
 
