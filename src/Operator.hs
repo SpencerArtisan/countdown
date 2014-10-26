@@ -1,13 +1,4 @@
-module Operator (operate, multiOperate, operateWithMemo, plus, minus, times) where
-
-operate :: (Int -> Int -> Int) -> [Int] -> Int
-operate _ [] = 0
-operate f xs = foldl1 f xs
-
-multiOperate:: [(Int -> Int -> Int)] -> [Int] -> [Int]
-multiOperate _ [x] = [x]
-multiOperate ops (x:y:zs) = 
-  concat [multiOperate ops (operate op [x,y]:zs) | op <- ops]
+module Operator (operateWithMemo, plus, minus, times) where
 
 operateWithMemo :: [(Int,String) -> (Int,String) -> (Int, String)] -> [(Int,String)] -> [(Int,String)]
 operateWithMemo _ [] = []
