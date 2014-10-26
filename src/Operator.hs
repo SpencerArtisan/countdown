@@ -16,14 +16,9 @@ minus = applyOp (-) "-"
 
 times :: Solution -> Solution -> Solution
 times (Solution x s)
-    | elemAny "+-" s = applyOp (*) "*" $ Solution x ("(" ++ s ++ ")")
-    | otherwise      = applyOp (*) "*" $ Solution x s
+    | any (`elem` "+-") s = applyOp (*) "*" $ Solution x $ "(" ++ s ++ ")"
+    | otherwise           = applyOp (*) "*" $ Solution x s
 
 applyOp :: (Int -> Int -> Int) -> String -> Solution -> Solution -> Solution
-applyOp f sym (Solution x s1) (Solution y s2) = Solution (f x y) (opMemo sym s1 s2)
+applyOp f sym (Solution x s1) (Solution y s2) = Solution (f x y) (concat [s1,sym,s2])
 
-opMemo :: String -> String -> String -> String
-opMemo op s1 s2 = s1 ++ op ++ s2
-
-elemAny :: (Eq a) => [a] -> [a] -> Bool
-elemAny xs ys = foldr1 (||) [elem x ys | x <- xs]
