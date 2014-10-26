@@ -12,9 +12,9 @@ spec = do
       it "should return the value if a single value is supplied" $ do
           operateWithMemo [plus,minus] [Solution 1 "1"] `shouldBe` [Solution 1 "1"]
          
-      it "should return the sum of two values for sum" $ do
+      it "should return two solutions for two values and two operators" $ do
           operateWithMemo [plus,minus] [Solution 1 "1", Solution 2 "2"] `shouldBe` [Solution 3 "1+2",Solution (-1) "1-2"]
          
-      it "should return the sum of three values for sum" $ do
+      it "should return four solutions for three values and two operators" $ do
           operateWithMemo [plus,minus] [Solution 1 "1",Solution 2 "2",Solution 3 "3"] `shouldBe` [Solution 6 "1+2+3",Solution 0 "1+2-3",Solution 2 "1-2+3",Solution (-4) "1-2-3"]
 
