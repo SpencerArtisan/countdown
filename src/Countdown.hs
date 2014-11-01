@@ -11,17 +11,17 @@ countdown xs = concat [operateWithMemo ops (map toSolution cm) | ss <- subsets x
           ops = [plus, minus, times, divide]
 
 countdownTarget :: [Int] -> Int -> String
-countdownTarget xs t 
-    | null calcs = "No answer"
-    | otherwise  = let Solution x s = head calcs in s
-    where hitsTarget (Solution v r) = t == v
-          calcs = filter hitsTarget $ countdown xs
+countdownTarget xs t
+    | null results = "No answer"
+    | otherwise    = head results
+    where results = countdownTargets xs t
 
 countdownTargets :: [Int] -> Int -> [String]
 countdownTargets xs t 
     | null calcs = []
-    | otherwise  = map (\(Solution x s) -> s) calcs
+    | otherwise  = map extractMemo calcs
     where hitsTarget (Solution v r) = t == v
           calcs = filter hitsTarget $ countdown xs
+          extractMemo (Solution v r) = r
 
 
