@@ -7,7 +7,7 @@ main = do
   putStrLn "Enter your target number"
   targetString <- getLine
   let target = read targetString
-  putStrLn $ unlines $ countdownTargets numbers target
+  mapM putStrLn $ countdownTargets numbers target
 
 toInt :: String -> Int
 toInt x = read x :: Int

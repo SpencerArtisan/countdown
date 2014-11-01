@@ -19,7 +19,7 @@ countdownTarget xs t
 countdownTargets :: [Int] -> Int -> [String]
 countdownTargets xs t 
     | null calcs = []
-    | otherwise  = map extractMemo calcs
+    | otherwise  = nub $ map extractMemo calcs
     where hitsTarget (Solution v r) = t == v
           calcs = filter hitsTarget $ countdown xs
           extractMemo (Solution v r) = r
