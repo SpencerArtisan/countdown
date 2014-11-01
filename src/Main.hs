@@ -1,5 +1,14 @@
-module Main (main,hi) where
-main = putStrLn "Hello"
+import Countdown
 
-hi = 33
+main = do
+  putStrLn "Enter your source numbers, space separated"
+  numberString <- getLine
+  let numbers = map toInt $ words numberString
+  putStrLn "Enter your target number"
+  targetString <- getLine
+  let target = read targetString
+  putStrLn $ unlines $ countdownTargets numbers target
+
+toInt :: String -> Int
+toInt x = read x :: Int
 
