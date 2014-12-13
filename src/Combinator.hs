@@ -1,5 +1,7 @@
 module Combinator (combinations, subsets) where
 
+import Control.Monad
+
 combinations :: [Int] -> [[Int]]
 combinations [] = []
 combinations [x] = [[x]]
@@ -8,6 +10,4 @@ combinations xs = [xs!!i : ys | i <- [0..length xs - 1]
                               , ys <- combinations $ cutOut]
 
 subsets :: [Int] -> [[Int]]
-subsets [] = []
-subsets [x] = [[x]]
-subsets (x:xs) = [x] : subsets xs ++ [x:ys | ys <- subsets xs] 
+subsets xs = filterM (\x -> [True, False]) xs

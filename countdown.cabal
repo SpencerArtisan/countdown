@@ -13,6 +13,7 @@ library
     hs-source-dirs:   src
     build-depends:    base >= 4
     exposed-modules:  Operator,Combinator,Countdown
+    build-depends:    containers
 
 test-suite spec
     type:             exitcode-stdio-1.0
@@ -21,6 +22,7 @@ test-suite spec
     build-depends:    base == 4.*,
                       QuickCheck >= 2.6,
                       hspec >= 1.3,
+                      containers,
                       countdown
 
 
